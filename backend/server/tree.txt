@@ -1,0 +1,11 @@
+./config/db.js
+./config/server.js
+./controllers/alunoController.js
+./controllers/cursoController.js
+./middlewares/errorHandler.js
+./middlewares/security.js
+./middlewares/validation.js
+./models/Aluno.js
+./models/Curso.js
+./routes/alunoRoutes.js
+./routes/cursoRoutes.js

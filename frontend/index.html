@@ -1,31 +1,84 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-PT">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Students Management</title>
+  <title>Gestão de Alunos</title>
   <link rel="stylesheet" href="style.css" />
+  <style>
+    /* Wave Background Animation */
+    .wave-background {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    .wave {
+      position: absolute;
+      width: 200%;
+      height: 200px;
+      left: -50%;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 40% 60% 60% 40% / 50% 40% 60% 50%;
+      animation: wave-animation 10s infinite linear;
+    }
+
+    .wave1 {
+      top: 30%;
+      animation-duration: 18s;
+      opacity: 0.6;
+    }
+
+    .wave2 {
+      top: 50%;
+      animation-duration: 25s;
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    @keyframes wave-animation {
+      0% {
+        transform: translateX(0) translateY(0);
+      }
+      50% {
+        transform: translateX(25%) translateY(10px);
+      }
+      100% {
+        transform: translateX(0) translateY(0);
+      }
+    }
+  </style>
 </head>
 <body>
+  <!-- Animated Waves -->
+  <div class="wave-background">
+    <div class="wave wave1"></div>
+    <div class="wave wave2"></div>
+  </div>
+  
+
   <nav>
     <div class="logo">StudentHub</div>
     <ul>
-      <li><a href="#list">Students</a></li>
-      <li><a href="#form">Add Student</a></li>
+      <li><a href="#list">Alunos</a></li>
+      <li><a href="#form">Adicionar Aluno</a></li>
     </ul>
   </nav>
 
   <main class="horizontal-layout">
     <section class="container" id="list">
-      <h1>Students</h1>
+      <h1>Lista de Alunos</h1>
       <table>
         <thead>
           <tr>
-            <th>Name</th>
-            <th>Last Name</th>
-            <th>Course</th>
-            <th>Year</th>
-            <th>Actions</th>
+            <th>Nome</th>
+            <th>Apelido</th>
+            <th>Curso</th>
+            <th>Ano</th>
+            <th>Ações</th>
           </tr>
         </thead>
         <tbody id="students-tbody">
@@ -34,53 +87,49 @@
     </section>
 
     <section class="container" id="form">
-      <h2 id="form-title">Add New Student</h2>
+      <h2 id="form-title">Adicionar Novo Aluno</h2>
       <form id="student-form" novalidate>
         <input type="hidden" id="student-id" />
 
         <input
           type="text"
           id="nome"
-          placeholder="Name"
+          placeholder="Nome"
           required
           minlength="2"
-          aria-label="Student's First Name"
+          aria-label="Nome do aluno"
         />
 
         <input
           type="text"
           id="apelido"
-          placeholder="Last Name"
+          placeholder="Apelido"
           required
           minlength="2"
-          aria-label="Student's Last Name"
+          aria-label="Apelido do aluno"
         />
 
-        <input
-          type="text"
+        <select
           id="curso"
-          placeholder="Course"
           required
-          minlength="2"
-          aria-label="Student's Course"
-        />
+          aria-label="Curso do aluno"
+        >
+          <option value="">-- Selecionar curso --</option>
+        </select>
 
-        <input
-          type="number"
+        <select
           id="anoCurricular"
-          placeholder="Year (1-12)"
-          min="1"
-          max="12"
           required
-          aria-label="Student's Year"
-        />
+          aria-label="Ano curricular do aluno"
+        >
+        </select>
 
-        <button type="submit">Save Student</button>
+        <button type="submit">Guardar Aluno</button>
       </form>
     </section>
   </main>
 
-  <!-- Inline JavaScript for breathing gradient -->
+  <!-- Animated Gradient Script -->
   <script>
     let t = 0;
 
@@ -104,6 +153,6 @@
     requestAnimationFrame(animateGradients);
   </script>
 
-<script src="script.js" defer></script>
+  <script src="script.js" defer></script>
 </body>
 </html>
