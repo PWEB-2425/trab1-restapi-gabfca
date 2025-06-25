@@ -1,1 +1,165 @@
-/* Estilos para a página */
+:root {
+    --grad-angle: 135deg;
+    --grad-color1: #ffffff;
+    --grad-color2: #fce9e9;
+    --dynamic-bg: linear-gradient(var(--grad-angle), var(--grad-color1), var(--grad-color2));
+  }
+  
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+  body {
+    background: var(--dynamic-bg);
+    color: #333;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    transition: background 0.5s ease;
+  }
+  
+  nav {
+    background: linear-gradient(to right, #8b0000, #ff4d4d);
+    color: white;
+    padding: 1rem 2rem;
+    text-transform: uppercase;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    letter-spacing: 1px;
+    border-bottom: 4px solid #660000;
+    border-radius: 0 0 10px 10px;
+  }
+  
+  nav .logo {
+    font-size: 1.5rem;
+  }
+  
+  nav ul {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+  }
+  
+  nav ul li a {
+    color: white;
+    text-decoration: none;
+    position: relative;
+  }
+  
+  nav ul li a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    width: 0;
+    height: 2px;
+    background: white;
+    transition: width 0.3s ease;
+  }
+  
+  nav ul li a:hover::after {
+    width: 100%;
+  }
+  
+  .horizontal-layout {
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+    padding: 2rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    background: var(--dynamic-bg);
+    flex: 1;
+    transition: background 0.5s ease;
+  }
+  
+  .container {
+    flex: 1;
+    min-width: 350px;
+    max-width: 600px;
+    background: var(--dynamic-bg);
+    padding: 2rem;
+    border: 2px solid #cc0000;
+    box-shadow: 0 0 20px rgba(204, 0, 0, 0.2);
+    border-radius: 10px;
+    transition: background 0.5s ease;
+  }
+  
+  h1, h2 {
+    color: #8b0000;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  
+  thead {
+    background: linear-gradient(to right, #cc0000, #ff6666);
+    color: white;
+  }
+  
+  th, td {
+    padding: 0.75rem;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  tr:hover {
+    background: rgba(255, 0, 0, 0.05);
+  }
+  
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  input, button {
+    padding: 0.75rem;
+    border: none;
+    outline: none;
+    border: 2px solid #cc0000;
+    background: white;
+    color: #333;
+    font-size: 1rem;
+    border-radius: 8px;
+    transition: background 0.3s, color 0.3s;
+  }
+  
+  input:focus {
+    background: #fff0f0;
+    border-color: #ff4d4d;
+  }
+  
+  button {
+    background: linear-gradient(to right, #ff4d4d, #cc0000);
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: background 0.3s ease;
+  }
+  
+  button:hover {
+    background: linear-gradient(to left, #cc0000, #ff4d4d);
+  }
+  
+  @media (max-width: 768px) {
+    .horizontal-layout {
+      flex-direction: column;
+      padding: 1rem;
+    }
+  }
+  

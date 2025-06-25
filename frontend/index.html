@@ -1,1 +1,109 @@
-<!-- Página CRUD de Alunos -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Students Management</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <nav>
+    <div class="logo">StudentHub</div>
+    <ul>
+      <li><a href="#list">Students</a></li>
+      <li><a href="#form">Add Student</a></li>
+    </ul>
+  </nav>
+
+  <main class="horizontal-layout">
+    <section class="container" id="list">
+      <h1>Students</h1>
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Last Name</th>
+            <th>Course</th>
+            <th>Year</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="students-tbody">
+        </tbody>
+      </table>
+    </section>
+
+    <section class="container" id="form">
+      <h2 id="form-title">Add New Student</h2>
+      <form id="student-form" novalidate>
+        <input type="hidden" id="student-id" />
+
+        <input
+          type="text"
+          id="nome"
+          placeholder="Name"
+          required
+          minlength="2"
+          aria-label="Student's First Name"
+        />
+
+        <input
+          type="text"
+          id="apelido"
+          placeholder="Last Name"
+          required
+          minlength="2"
+          aria-label="Student's Last Name"
+        />
+
+        <input
+          type="text"
+          id="curso"
+          placeholder="Course"
+          required
+          minlength="2"
+          aria-label="Student's Course"
+        />
+
+        <input
+          type="number"
+          id="anoCurricular"
+          placeholder="Year (1-12)"
+          min="1"
+          max="12"
+          required
+          aria-label="Student's Year"
+        />
+
+        <button type="submit">Save Student</button>
+      </form>
+    </section>
+  </main>
+
+  <!-- Inline JavaScript for breathing gradient -->
+  <script>
+    let t = 0;
+
+    function animateGradients() {
+      const angle = 135 + 15 * Math.sin(t * 0.005);
+      const red = Math.floor(240 + 15 * Math.sin(t * 0.004));
+      const green = Math.floor(200 + 10 * Math.sin(t * 0.006));
+      const blue = Math.floor(200 + 10 * Math.cos(t * 0.005));
+
+      const color1 = '#ffffff';
+      const color2 = `rgb(${red}, ${green}, ${blue})`;
+
+      document.documentElement.style.setProperty('--grad-angle', `${angle}deg`);
+      document.documentElement.style.setProperty('--grad-color1', color1);
+      document.documentElement.style.setProperty('--grad-color2', color2);
+
+      t += 1;
+      requestAnimationFrame(animateGradients);
+    }
+
+    requestAnimationFrame(animateGradients);
+  </script>
+
+<script src="script.js" defer></script>
+</body>
+</html>

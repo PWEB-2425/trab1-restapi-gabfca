@@ -1,11 +1,11 @@
 {
   "alunos": [
     {
-      "id": 1,
       "nome": "João",
       "apelido": "Silva",
-      "curso": "Engenharia Informática",
-      "anoCurricular": 2
+      "curso": "Design Gráfico",
+      "anoCurricular": 2,
+      "id": 1
     },
     {
       "id": 2,
