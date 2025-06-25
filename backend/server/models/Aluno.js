@@ -6,7 +6,7 @@ const alunoSchema = new mongoose.Schema({
   curso: String,
   anoCurricular: Number,
   id: Number
-}, { _id: false }); // Disable _id since we're using our own id
+}, { _id: false }); 
 
 const studentDataSchema = new mongoose.Schema({
   alunos: [alunoSchema],
@@ -14,6 +14,6 @@ const studentDataSchema = new mongoose.Schema({
     id: Number,
     nomeDoCurso: String
   }]
-}, { collection: 'Students' }); // Explicitly set to your collection name
+}, { collection: 'Students' }); 
 
 module.exports = mongoose.model('StudentData', studentDataSchema);
