@@ -201,7 +201,7 @@ async function handleFormSubmit(event) {
 
     if (!response.ok) {
       const errorText = await response.text();
-      throw new Error(`Erro ao salvar aluno: ${response.status} ${response.statusText} - ${errorText}`);
+      throw new Error(`Erro ao guardar aluno: ${response.status} ${response.statusText} - ${errorText}`);
     }
 
     resetForm();
@@ -218,7 +218,7 @@ function resetForm() {
   elements.form.reset();
   elements.id.value = '';
   elements.formTitle.textContent = 'Adicionar Novo Aluno';
-  elements.submitBtn.textContent = 'Salvar';
+  elements.submitBtn.textContent = 'Guardar';
 }
 
 function initializeEventListeners() {
