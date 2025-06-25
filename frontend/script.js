@@ -1,5 +1,5 @@
-const STUDENTS_API_URL = 'http://localhost:3001/alunos';
-const COURSES_API_URL = 'http://localhost:3001/cursos';
+const STUDENTS_API_URL = 'https://trab1-restapi-gabfca.onrender.com/alunos';
+const COURSES_API_URL = 'https://trab1-restapi-gabfca.onrender.com/cursos';
 
 const elements = {
   tbody: document.getElementById('students-tbody'),             
