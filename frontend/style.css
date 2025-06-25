@@ -1,1 +1,314 @@
-/* Estilos para a página */
+/* ============================= */
+/* Root Variables & Theme       */
+/* ============================= */
+:root {
+  --grad-angle: 135deg;
+  --grad-color1: #fdf0f0;
+  --grad-color2: #ff9c9c;
+  --accent-color: #c20000;
+  --accent-hover: #ff4a4a;
+  --text-color: #1a1a1a;
+  --glass-bg: rgba(255, 255, 255, 0.14);
+  --glass-border: rgba(255, 255, 255, 0.25);
+  --glass-shadow: 0 10px 38px rgba(0, 0, 0, 0.2);
+}
+
+/* ============================= */
+/* Global Base Styles           */
+/* ============================= */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(var(--grad-angle), var(--grad-color1), var(--grad-color2));
+  background-size: 400% 400%;
+  animation: gradient-breathe 20s ease-in-out infinite;
+  display: flex;
+  flex-direction: column;
+  color: var(--text-color);
+  overflow-x: hidden;
+  transition: background 0.6s ease;
+}
+
+/* ============================= */
+/* Navigation Bar               */
+/* ============================= */
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.25rem 2.5rem;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(15px);
+  border-bottom: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  animation: fadeInDown 0.6s ease-out both;
+}
+
+.logo {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--accent-color);
+  letter-spacing: -0.5px;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.3);
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+}
+
+nav a {
+  position: relative;
+  color: var(--accent-color);
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+nav a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--accent-hover);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+
+nav a:hover {
+  color: var(--accent-hover);
+}
+
+nav a:hover::after {
+  transform: scaleX(1);
+}
+
+/* ============================= */
+/* Main Layout                  */
+/* ============================= */
+.horizontal-layout {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2.5rem;
+  padding: 3rem 2rem;
+  animation: fadeIn 1s ease-out both;
+}
+
+/* ============================= */
+/* Glass Container              */
+/* ============================= */
+.container {
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--glass-border);
+  border-radius: 24px;
+  box-shadow: var(--glass-shadow);
+  padding: 2.5rem;
+  width: 45%;
+  min-width: 320px;
+  transition: transform 0.4s ease, box-shadow 0.3s ease;
+}
+
+.container:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.3);
+}
+
+.container h1,
+.container h2 {
+  margin-bottom: 1rem;
+  color: var(--accent-color);
+  font-size: 1.75rem;
+  border-bottom: 1px solid rgba(204, 0, 0, 0.2);
+  padding-bottom: 0.5rem;
+}
+
+/* ============================= */
+/* Table Styles                 */
+/* ============================= */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 12px;
+  overflow: hidden;
+  font-size: 0.95rem;
+  color: var(--text-color);
+}
+
+th, td {
+  padding: 0.85rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+th {
+  background: rgba(255, 100, 100, 0.3);
+  color: #900;
+  font-weight: bold;
+}
+
+td {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+/* ============================= */
+/* Form Elements                */
+/* ============================= */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+input {
+  padding: 0.9rem 1.2rem;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(12px);
+  font-size: 1rem;
+  color: #222;
+  transition: all 0.3s ease;
+}
+
+input:focus {
+  background: rgba(255, 255, 255, 0.45);
+  border-color: var(--accent-color);
+  outline: none;
+}
+
+/* ============================= */
+/* Buttons                      */
+/* ============================= */
+button {
+  padding: 0.85rem 1.2rem;
+  background: var(--accent-color);
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 20px rgba(204, 0, 0, 0.25);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  background: var(--accent-hover);
+  box-shadow: 0 6px 25px rgba(255, 68, 68, 0.4);
+  transform: translateY(-2px);
+}
+
+/* ============================= */
+/* Keyframe Animations          */
+/* ============================= */
+@keyframes gradient-breathe {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  } to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  } to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ============================= */
+/* Responsive Design            */
+/* ============================= */
+@media (max-width: 768px) {
+  .horizontal-layout {
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem 1.5rem;
+  }
+
+  .container {
+    width: 90%;
+  }
+
+  nav {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  nav ul {
+    flex-direction: column;
+    gap: 0.75rem;
+    width: 100%;
+  }
+
+  nav a {
+    display: block;
+    width: 100%;
+  }
+}
+
+select {
+  appearance: none;
+  padding: 0.9rem 1.2rem;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(12px);
+  color: #333;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 140 140' xmlns='http://www.w3.org/2000/svg'%3E%3Cpolyline points='20,40 70,90 120,40' stroke='%23cc0000' stroke-width='20' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  background-size: 1rem;
+}
+
+select:focus {
+  background: rgba(255, 255, 255, 0.45);
+  border-color: var(--accent-color);
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(204, 0, 0, 0.2);
+}
+
+select::-ms-expand {
+  display: none;
+}
