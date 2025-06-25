@@ -25,3 +25,4 @@ tests/*.exported.json
 *.env
 
 coverage/
+node_modules/
