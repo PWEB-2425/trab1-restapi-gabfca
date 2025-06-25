@@ -31,7 +31,7 @@ exports.getAlunoById = async (req, res, next) => {
       return res.status(404).json({ message: 'No alunos found' });
     }
     
-    const aluno = data.alunos.find(a => a.id === parseInt(req.params.id));
+    const aluno = data.alunos.find(a => a.id === parseInt(req.params.id, 10));
     if (!aluno) {
       return res.status(404).json({ message: 'Aluno não encontrado' });
     }

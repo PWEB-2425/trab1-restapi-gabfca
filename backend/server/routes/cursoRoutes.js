@@ -7,18 +7,18 @@ const { validateCourse, validateId, validate } = require('../middlewares/validat
  * @swagger
  * tags:
  *   name: Cursos
- *   description: Operações relacionadas a cursos
+ *   description: API for managing cursos (courses)
  */
 
 /**
  * @swagger
- * /cursos:
+ * /:
  *   get:
- *     summary: Lista todos os cursos
+ *     summary: Get all cursos
  *     tags: [Cursos]
  *     responses:
  *       200:
- *         description: Lista de cursos retornada com sucesso
+ *         description: List of cursos
  *         content:
  *           application/json:
  *             schema:
@@ -30,36 +30,34 @@ router.get('/', cursoController.getAllCursos);
 
 /**
  * @swagger
- * /cursos/{id}:
+ * /{id}:
  *   get:
- *     summary: Obtém um curso pelo ID
+ *     summary: Get a curso by ID
  *     tags: [Cursos]
  *     parameters:
  *       - in: path
  *         name: id
  *         required: true
  *         schema:
- *           type: string
- *         description: ID do curso
+ *           type: integer
+ *         description: ID of the curso
  *     responses:
  *       200:
- *         description: Dados do curso retornados com sucesso
+ *         description: Curso found
  *         content:
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/Curso'
- *       400:
- *         description: ID inválido
  *       404:
- *         description: Curso não encontrado
+ *         description: Curso not found
  */
 router.get('/:id', validateId, validate, cursoController.getCursoById);
 
 /**
  * @swagger
- * /cursos:
+ * /:
  *   post:
- *     summary: Cria um novo curso
+ *     summary: Create a new curso
  *     tags: [Cursos]
  *     requestBody:
  *       required: true
@@ -69,29 +67,23 @@ router.get('/:id', validateId, validate, cursoController.getCursoById);
  *             $ref: '#/components/schemas/Curso'
  *     responses:
  *       201:
- *         description: Curso criado com sucesso
- *         content:
- *           application/json:
- *             schema:
- *               $ref: '#/components/schemas/Curso'
- *       400:
- *         description: Dados inválidos
+ *         description: Curso created successfully
  */
 router.post('/', validateCourse, validate, cursoController.createCurso);
 
 /**
  * @swagger
- * /cursos/{id}:
+ * /{id}:
  *   put:
- *     summary: Atualiza um curso existente
+ *     summary: Update a curso by ID
  *     tags: [Cursos]
  *     parameters:
  *       - in: path
  *         name: id
  *         required: true
  *         schema:
- *           type: string
- *         description: ID do curso para atualização
+ *           type: integer
+ *         description: ID of the curso to update
  *     requestBody:
  *       required: true
  *       content:
@@ -100,38 +92,30 @@ router.post('/', validateCourse, validate, cursoController.createCurso);
  *             $ref: '#/components/schemas/Curso'
  *     responses:
  *       200:
- *         description: Curso atualizado com sucesso
- *         content:
- *           application/json:
- *             schema:
- *               $ref: '#/components/schemas/Curso'
- *       400:
- *         description: Dados inválidos
+ *         description: Curso updated successfully
  *       404:
- *         description: Curso não encontrado
+ *         description: Curso not found
  */
 router.put('/:id', [...validateId, ...validateCourse], validate, cursoController.updateCurso);
 
 /**
  * @swagger
- * /cursos/{id}:
+ * /{id}:
  *   delete:
- *     summary: Remove um curso pelo ID
+ *     summary: Delete a curso by ID
  *     tags: [Cursos]
  *     parameters:
  *       - in: path
  *         name: id
  *         required: true
  *         schema:
- *           type: string
- *         description: ID do curso para remoção
+ *           type: integer
+ *         description: ID of the curso to delete
  *     responses:
  *       204:
- *         description: Curso removido com sucesso
- *       400:
- *         description: ID inválido
+ *         description: Curso deleted successfully
  *       404:
- *         description: Curso não encontrado
+ *         description: Curso not found
  */
 router.delete('/:id', validateId, validate, cursoController.deleteCurso);
 

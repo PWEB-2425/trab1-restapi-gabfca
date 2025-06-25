@@ -1,6 +1,12 @@
 const STUDENTS_API_URL = 'https://trab1-restapi-gabfca.onrender.com/alunos';
 const COURSES_API_URL = 'https://trab1-restapi-gabfca.onrender.com/cursos';
 
+const fixedCourses = [
+  'Engenharia de Redes e Sistemas de Computadores',
+  'Engenharia Informatica',
+  'Design Grafico e Computaçao Multimedia',
+];
+
 const elements = {
   tbody: document.getElementById('students-tbody'),             
   form: document.getElementById('student-form'),                 
@@ -15,6 +21,34 @@ const elements = {
 
 let validCourses = [];
 
+function normalizeString(str) {
+  return str
+    .toLowerCase()
+    .normalize('NFD')                  // Decompose accented characters
+    .replace(/[\u0300-\u036f]/g, '')  // Remove accents
+    .trim();
+}
+
+function mergeCourses(fixed, api) {
+  const seen = new Map();
+
+  for (const course of fixed) {
+    const norm = normalizeString(course);
+    if (!seen.has(norm)) {
+      seen.set(norm, course); // preserve formatting from fixedCourses
+    }
+  }
+
+  for (const course of api) {
+    const norm = normalizeString(course);
+    if (!seen.has(norm)) {
+      seen.set(norm, course); // add only if not duplicate (normalized)
+    }
+  }
+
+  return Array.from(seen.values());
+}
+
 async function fetchAndPopulateCourses() {
   try {
     const response = await fetch(COURSES_API_URL);
@@ -22,22 +56,22 @@ async function fetchAndPopulateCourses() {
 
     const courses = await response.json();
 
-    if (!Array.isArray(courses) || courses.length === 0) {
-      validCourses = [];
-      elements.curso.innerHTML = '<option value="">Nenhum curso disponível</option>';
-      return;
-    }
+    const apiCourses = Array.isArray(courses)
+      ? courses.map(course => (typeof course === 'object' && course.nomeDoCurso ? course.nomeDoCurso : course))
+      : [];
 
-    validCourses = courses.map(course =>
-      typeof course === 'object' && course.nomeDoCurso ? course.nomeDoCurso : course
-    );
+    validCourses = mergeCourses(fixedCourses, apiCourses);
 
-    // Populate the <select> element with options
     elements.curso.innerHTML = '<option value="">-- Selecionar curso --</option>' +
       validCourses.map(courseName => `<option value="${courseName}">${courseName}</option>`).join('');
   } catch (error) {
     console.error('Erro ao obter cursos:', error);
     alert(`Erro ao carregar cursos: ${error.message}`);
+
+    // fallback to fixed courses only
+    validCourses = [...fixedCourses];
+    elements.curso.innerHTML = '<option value="">-- Selecionar curso --</option>' +
+      validCourses.map(courseName => `<option value="${courseName}">${courseName}</option>`).join('');
   }
 }
 

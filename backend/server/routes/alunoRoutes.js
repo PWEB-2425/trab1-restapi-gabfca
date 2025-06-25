@@ -6,18 +6,18 @@ const alunoController = require('../controllers/alunoController');
  * @swagger
  * tags:
  *   name: Alunos
- *   description: Operações relacionadas a alunos
+ *   description: API for managing students (alunos)
  */
 
 /**
  * @swagger
- * /alunos:
+ * /:
  *   get:
- *     summary: Lista todos os alunos
+ *     summary: Get all alunos
  *     tags: [Alunos]
  *     responses:
  *       200:
- *         description: Lista de alunos retornada com sucesso
+ *         description: A list of all alunos
  *         content:
  *           application/json:
  *             schema:
@@ -29,34 +29,34 @@ router.get('/', alunoController.getAllAlunos);
 
 /**
  * @swagger
- * /alunos/{id}:
+ * /{id}:
  *   get:
- *     summary: Obtém um aluno pelo ID
+ *     summary: Get an aluno by ID
  *     tags: [Alunos]
  *     parameters:
  *       - in: path
  *         name: id
  *         required: true
  *         schema:
- *           type: string
- *         description: ID do aluno
+ *           type: integer
+ *         description: The ID of the aluno
  *     responses:
  *       200:
- *         description: Dados do aluno retornados com sucesso
+ *         description: Aluno found
  *         content:
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/Aluno'
  *       404:
- *         description: Aluno não encontrado
+ *         description: Aluno not found
  */
 router.get('/:id', alunoController.getAlunoById);
 
 /**
  * @swagger
- * /alunos:
+ * /:
  *   post:
- *     summary: Cria um novo aluno
+ *     summary: Create a new aluno
  *     tags: [Alunos]
  *     requestBody:
  *       required: true
@@ -66,29 +66,23 @@ router.get('/:id', alunoController.getAlunoById);
  *             $ref: '#/components/schemas/Aluno'
  *     responses:
  *       201:
- *         description: Aluno criado com sucesso
- *         content:
- *           application/json:
- *             schema:
- *               $ref: '#/components/schemas/Aluno'
- *       400:
- *         description: Dados inválidos
+ *         description: Aluno created successfully
  */
 router.post('/', alunoController.createAluno);
 
 /**
  * @swagger
- * /alunos/{id}:
+ * /{id}:
  *   put:
- *     summary: Atualiza um aluno existente
+ *     summary: Update an existing aluno
  *     tags: [Alunos]
  *     parameters:
  *       - in: path
  *         name: id
  *         required: true
  *         schema:
- *           type: string
- *         description: ID do aluno para atualização
+ *           type: integer
+ *         description: ID of the aluno to update
  *     requestBody:
  *       required: true
  *       content:
@@ -97,36 +91,30 @@ router.post('/', alunoController.createAluno);
  *             $ref: '#/components/schemas/Aluno'
  *     responses:
  *       200:
- *         description: Aluno atualizado com sucesso
- *         content:
- *           application/json:
- *             schema:
- *               $ref: '#/components/schemas/Aluno'
- *       400:
- *         description: Dados inválidos
+ *         description: Aluno updated successfully
  *       404:
- *         description: Aluno não encontrado
+ *         description: Aluno not found
  */
 router.put('/:id', alunoController.updateAluno);
 
 /**
  * @swagger
- * /alunos/{id}:
+ * /{id}:
  *   delete:
- *     summary: Remove um aluno pelo ID
+ *     summary: Delete an aluno by ID
  *     tags: [Alunos]
  *     parameters:
  *       - in: path
  *         name: id
  *         required: true
  *         schema:
- *           type: string
- *         description: ID do aluno para remoção
+ *           type: integer
+ *         description: ID of the aluno to delete
  *     responses:
  *       204:
- *         description: Aluno removido com sucesso
+ *         description: Aluno deleted successfully
  *       404:
- *         description: Aluno não encontrado
+ *         description: Aluno not found
  */
 router.delete('/:id', alunoController.deleteAluno);
 
