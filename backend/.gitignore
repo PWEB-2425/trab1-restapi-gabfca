@@ -22,5 +22,6 @@ tests/*.exported.json
 .idea/
 *.swp
 *.swo
+*.env
 
 coverage/
